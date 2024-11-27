@@ -68,4 +68,17 @@ class Smell1AlmostBestTest {
         assertEquals(8, firstCall, "First call should calculate 2^3 as 8");
         assertEquals(8, secondCall, "Second call should return cached value");
     }
+
+    @Test
+    void testLargeBaseSmallPower() {
+        assertEquals(1000000, Smell1AlmostBest.toPower(10, 6),
+                "10 to the power of 6 should be 1000000");
+    }
+
+    @Test
+    void testVeryBigPower() {
+        assertThrows(ArithmeticException.class,
+                () -> Smell1AlmostBest.toPower(2, 31),
+                "Very large power should throw an ArithmeticException due to integer overflow");
+    }
 }
